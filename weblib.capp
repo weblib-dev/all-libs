@@ -1,0 +1,33 @@
+import requests
+import os
+import shutil
+
+def t(lib):
+    return requests.get('https://' + lib + '.weblib.dev/') 
+
+
+cwd = os.getcwd()
+if os.path.exists('./web_modules'):
+    pass
+else:
+    os.mkdir('./web_modules')
+yes = 'true'
+
+x = input('').split(' ')
+
+while True:
+    x = input('').split(' ')
+    if x[0] == '':
+        pass
+    elif x[0] == "clear":
+        shutil.rmtree('./web_modules')
+    elif x[0] == "esc":
+        break
+    elif x[1] == "bulma":
+        r = t('bulma')
+        with open("./web_modules/" + x[1] + '.' + x[0],'wb') as f:
+            f.write(r.content)
+    elif x[1] == "react":
+        r = t('react')
+        with open("./web_modules/" + x[1] + '.' + x[0],'wb') as f:
+            f.write(r.content)
